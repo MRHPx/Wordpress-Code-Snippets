@@ -1,0 +1,9 @@
+function exc_filter_wp_search($query) { 
+    //Filter Search only in the front-end and Not in the Admin.
+    if (!$query->is_admin && $query->is_search) {
+    //Search in Posts and CPTs only. Excludes Pages and Attachments .
+    $query->set('post_type', array('YOURCUSTOMPOSTTYPE1', 'YOURCUSTOMPOSTTYPE2'));
+    }
+    return $query;
+}
+add_filter('pre_get_posts','exc_filter_wp_search');
